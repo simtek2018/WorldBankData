@@ -1,5 +1,7 @@
 package population;
 
+import java.util.ArrayList;
+
 public class StrUtils {
 	public WorldBankEntry parseWorldBankEntry(String str) {
 		WorldBankEntry entry = null;
@@ -10,16 +12,32 @@ public class StrUtils {
 			String country = arr[0];
 			String code = arr[1];
 			String indicator = arr[2];
-			System.out.println("arr size = " + arr.length);
+			//System.out.println("arr size = " + arr.length);
 			// the 62 value is for 2018
+			ArrayList<Long> popArr = parseDataByYear(arr);
 			try {
 				long population = Long.parseLong(arr[arr.length-1]);
-				entry = new WorldBankEntry(country, code, indicator, population);
+				entry = new WorldBankEntry(country, code, indicator, population, popArr);
 			} catch (NumberFormatException e) {
 				return null;
 			}
 		}
 		return entry;
+	}
+
+	private ArrayList<Long> parseDataByYear(String[] arr) {
+		ArrayList<Long> arrList = new ArrayList<Long>();
+		for (int i=4; i<arr.length; i++) {
+			try {
+				long val = Long.parseLong(arr[i]);
+				arrList.add(val);
+			} catch (NumberFormatException e) {
+				arrList.add(-1L);
+			//	System.out.println("Country: " + arr[0]);
+			//	System.out.println("parseDataByYear: on value = " + i);
+			}
+		}
+		return arrList;
 	}
 
 	public int parsePopulation(String string) {

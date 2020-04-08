@@ -1,5 +1,7 @@
 package population;
 
+import java.util.ArrayList;
+
 public class WorldBankEntry {
 	//"Country Name","Country Code","Indicator Name","Indicator Code","1960",
 	//"1961","1962","1963","1964","1965","1966","1967","1968","1969","1970","1971",
@@ -11,14 +13,26 @@ public class WorldBankEntry {
 	private String country;
 	private String code;
 	private String indicator;
-	private long totPopulation;
+	private long pop2019;
+	private ArrayList<Long> population;
 	
-	public WorldBankEntry(String country, String code, String indicator, long totPopulation) {
+	
+	public ArrayList<Long> getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(ArrayList<Long> population) {
+		this.population = population;
+	}
+
+	public WorldBankEntry(String country, String code, String indicator, long totPopulation,
+			ArrayList<Long> population) {
 		super();
 		this.country = country;
 		this.code = code;
 		this.indicator = indicator;
-		this.totPopulation = totPopulation;
+		this.pop2019 = totPopulation;
+		this.population = population;
 	}
 
 	public String getCountry() {
@@ -46,17 +60,17 @@ public class WorldBankEntry {
 	}
 
 	public long getTotPopulation() {
-		return totPopulation;
+		return pop2019;
 	}
 
 	public void setTotPopulation(long totPopulation) {
-		this.totPopulation = totPopulation;
+		this.pop2019 = totPopulation;
 	}
 
 	@Override
 	public String toString() {
 		return "WorldBankEntry [country=" + country + ", code=" + code + ", indicator=" + indicator + ", totPopulation="
-				+ totPopulation + "]";
+				+ pop2019 + "]";
 	}
 
 }

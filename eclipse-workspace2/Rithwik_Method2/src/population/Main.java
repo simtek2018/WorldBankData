@@ -8,6 +8,7 @@ public class Main {
 	StrUtils utils = new StrUtils();
 	FileUtils fUtils = new FileUtils();
 	ArrayList<WorldBankEntry> entryArr = new ArrayList<>();
+	DisplayCountriesFrm cFrm;
 
 	public Main() {
 		arr = fUtils.readFile("./worldBank.txt");
@@ -19,8 +20,10 @@ public class Main {
 				entryArr.add(entry);
 			}
 		}
-		printArrayList(entryArr);
-		Charts chart = new Charts(entryArr);
+		
+		cFrm = new DisplayCountriesFrm(entryArr);
+		//printArrayList(entryArr);
+		//Charts chart = new Charts(entryArr);
 	}
 	
 	private void printArrayList(ArrayList<WorldBankEntry> entryArr) {
